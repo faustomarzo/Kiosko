@@ -1,0 +1,26 @@
+========================================
+  COMANDI KIOSK - srvtitan
+========================================
+
+--- SETUP COMPLETO (crea utente + autologon) ---
+.\Setup-Kiosk.ps1 -KioskUser "srvtitan" -CreateUser -SetAutologon
+
+--- SETUP SOLO AUTOLOGON (utente già esistente) ---
+.\Setup-Kiosk.ps1 -KioskUser "srvtitan" -SetAutologon
+
+--- SETUP SENZA AUTOLOGON ---
+.\Setup-Kiosk.ps1 -KioskUser "srvtitan"
+
+--- RIPRISTINO (undo) ---
+.\Setup-Kiosk.ps1 -Undo
+
+--- DEBUG (mostra console PowerShell) ---
+Debug-Kiosk.cmd
+
+--- VERIFICA REGISTRO AUTOLOGON ---
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultUserName
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultPassword
+
+========================================
+NOTA: eseguire come Amministratore
+========================================
