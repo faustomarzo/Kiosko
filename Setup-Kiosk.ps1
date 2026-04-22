@@ -19,7 +19,7 @@
 
 param(
     [string]$KioskUser   = $env:USERNAME,
-    [string]$KioskDomain = "",
+    [string]$KioskDomain = "RAI",
     [switch]$CreateUser,
     [switch]$SetAutologon,
     [switch]$Undo

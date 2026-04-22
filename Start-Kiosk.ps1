@@ -29,7 +29,7 @@ $AppProfile = "TEST"   # <-- Cambiare in "PROD" per titan.exe
 $AppProfiles = @{
     TEST = @{
         Name     = "VLC Media Player"
-        Path     = "C:\Program Files (x86)\VideoLAN\VLC\vlc.exe"
+        Path     = "C:\Program Files\VideoLAN\VLC\vlc.exe"
         Args     = "--fullscreen"    # VLC: avvia a schermo intero
         Process  = "vlc"
     }
