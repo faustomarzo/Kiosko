@@ -5,6 +5,8 @@
 --- SETUP COMPLETO (crea utente + autologon) ---
 .\Setup-Kiosk.ps1 -KioskUser "srvtitan" -CreateUser -SetAutologon
 
+2"mf8KQUx_e8
+
 --- SETUP SOLO AUTOLOGON (utente già esistente) ---
 .\Setup-Kiosk.ps1 -KioskUser "srvtitan" -SetAutologon
 
