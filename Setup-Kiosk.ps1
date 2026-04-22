@@ -134,26 +134,35 @@ Write-Host "[$stepNum] Creazione cartelle..." -ForegroundColor Yellow
 }
 
 # -------------------------------------------------------
-# STEP: Verifica file
+# STEP: Copia file
 # -------------------------------------------------------
 $stepNum++
 Write-Host ""
-Write-Host "[$stepNum] Verifica file..." -ForegroundColor Yellow
-$missing = @()
-foreach ($f in $RequiredFiles) {
-    if (Test-Path $f) {
-        Write-Host "    $f [OK]" -ForegroundColor DarkGray
+Write-Host "[$stepNum] Copia file necessari..." -ForegroundColor Yellow
+
+$sourceFiles = @(
+    "Start-Kiosk.vbs"
+    "Start-Kiosk.ps1"
+)
+
+foreach ($file in $sourceFiles) {
+    $source = Join-Path $PSScriptRoot $file
+    $dest = Join-Path $KioskFolder $file
+    
+    if (Test-Path $dest) {
+        Write-Host "    $dest [OK]" -ForegroundColor DarkGray
     }
     else {
-        Write-Host "    $f [MANCANTE]" -ForegroundColor Red
-        $missing += $f
+        if (Test-Path $source) {
+            Copy-Item -Path $source -Destination $dest -Force
+            Write-Host "    $dest [COPIATO]" -ForegroundColor Green
+        }
+        else {
+            Write-Host "    ERRORE: $source non trovato!" -ForegroundColor Red
+            $go = Read-Host "    Continuare comunque? (S/N)"
+            if ($go -notmatch "^[Ss]$") { exit 0 }
+        }
     }
-}
-if ($missing.Count -gt 0) {
-    Write-Host ""
-    Write-Host "    ATTENZIONE: copiare i file mancanti prima di riavviare!" -ForegroundColor Red
-    $go = Read-Host "    Continuare comunque? (S/N)"
-    if ($go -notmatch "^[Ss]$") { exit 0 }
 }
 
 # -------------------------------------------------------
